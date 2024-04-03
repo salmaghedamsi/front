@@ -1,0 +1,187 @@
+<table>
+    <tr>
+        <th>Action à faire</th>
+        <th>O/N</th>
+        <th>Détail d'action</th>
+        <th>Responsable</th>
+        <th>Délai</th>
+        <th>Attachement</th>
+        <th>Statut</th>
+        <th>Contrôle des actions</th>
+        <th>Commentaire QMS Central Data Entry</th>
+    </tr>
+    <tr>
+       <td> Formation des responsabilités citées dans l'instruction et concernés par le changement ou la création </td>
+       <td>
+        <select name="o/n" id="o/n">
+          <option value="oui" class="oui">oui</option>
+          <option value="non" class="non">non</option>
+        </select>
+      </td>   
+      <td><textarea id="details" name="details">
+    </textarea></td>
+    <td>
+      <mat-form-field>
+        <mat-label>Responsable</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let item of data" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+    <td><input type="date" class="mr-1" /> 
+              </td>
+              <td><input type="file" (change)="onFileSelected($event)"/>
+              </td>
+     </tr>
+<tr>
+       <td>Traduction de l'instruction en français</td>
+       <td>
+        <select name="o/n" id="o/n">
+          <option value="oui" class="oui">oui</option>
+          <option value="non" class="non">non</option>
+        </select>
+      </td>  
+     <td>
+    <textarea id="details" name="details">
+    </textarea></td>
+    <td><input type="date" class="mr-1" /> 
+    </td>
+    <td><input type="file" (change)="onFileSelected($event)"/>
+    </td>
+    </tr>
+    
+    <tr>
+       <td>Création ou màj d'une instruction interne </td>
+       <td>
+        <select name="o/n" id="o/n">
+          <option value="oui" class="oui">oui</option>
+          <option value="non" class="non">non</option>
+        </select>
+      </td>   
+      <td><textarea id="details" name="details">
+    </textarea></td>
+    <td><input type="date" class="mr-1" /> 
+    </td>
+    <td><input type="file" (change)="onFileSelected($event)"/>
+    </td>
+    </tr>
+    <tr>
+       <td>Mise à jour des instruction liées</td>
+       <td>
+        <select name="o/n" id="o/n">
+          <option value="oui" class="oui">oui</option>
+          <option value="non" class="non">non</option>
+        </select>
+      </td>
+      <td><textarea id="details" name="details">
+    </textarea></td>
+    <td><input type="date" class="mr-1" /> 
+    </td>
+    <td><input type="file" (change)="onFileSelected($event)"/>
+    </td>
+    </tr>
+    <tr>
+        <td>Mise à jour de fichier CSR</td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>  
+          <td><textarea id="details" name="details">
+        </textarea></td> 
+        <td><input type="date" class="mr-1" /> 
+        </td>
+        <td><input type="file" (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Mise à jour du modèle tortue</td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>  
+          <td><textarea id="details" name="details">
+        </textarea></td> 
+        <td><input type="date" class="mr-1" /> 
+        </td>
+        <td><input type="file" (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Mise à jour de l'AMDEC(FMEA) ou/et Plan de surveillance</td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>   
+          <td><textarea id="details" name="details">
+        </textarea></td>
+        <td>
+          <mat-form-field>
+            <mat-label>Responsable</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of data" [value]="item">
+                {{ item }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        
+        
+        <td><input type="date" class="mr-1" /> 
+        </td>
+        <td><input type="file" (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Mise à jour de support de formation qui porte sur le sujet de l'instruction (si ça existe) </td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>   
+          <td><textarea id="details" name="details">
+        </textarea></td>
+        <td><input type="date" class="mr-1" /> 
+        </td>
+        <td><input type="file" (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Affichage /mise à jour de l'affichage de l'instruction sur poste de travail</td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>   
+          <td><textarea id="details" name="details">
+        </textarea></td>
+        <td><input type="date" class="mr-1" /> 
+        </td>
+        <td><input type="file" (change)="onFileSelected($event)"/>
+        </td>
+    </tr>
+    <tr>
+        <td>pas d'impact</td>
+        <td>
+            <select name="o/n" id="o/n">
+              <option value="oui" class="oui">oui</option>
+              <option value="non" class="non">non</option>
+            </select>
+          </td>   
+          <td><textarea id="details" name="details">
+            </textarea></td>
+            <td><input type="date" class="mr-1" /> 
+            </td>
+            <td><input type="file" (change)="onFileSelected($event)"/>
+            </td>
+    </tr>
+</table>

@@ -1,0 +1,39 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height : 100%;
+  }
+  
+ 
+  mat-drawer-container {
+    height : 100%;
+    background-color:#E2E2E2;
+  }
+  
+mat-drawer {
+position : absolute;
+width : 241px;
+height : 1034px;
+left : 29px;
+top : -5px;
+background: #96B9D2;
+}
+
+
+
+mat-drawer-content{
+  left : 29px;
+
+}
+
+.rectangle {
+  width : 80vw;
+  height : 80vh;
+  margin-top : 20px;
+  margin-left : .5rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color:white;
+}
+  

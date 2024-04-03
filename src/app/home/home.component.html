@@ -1,0 +1,74 @@
+  <div class="container-fluid page">
+    <header class="d-flex justify-content-between align-items-center">
+      <div class="home">Home</div>
+
+      <div class="container">
+        <mat-form-field class="mr-2">
+          <mat-select placeholder="status">
+            <mat-option >in progress</mat-option>
+            <mat-option >Closed</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="expense-nav-bar"> 
+          <span class=" mr-1">Period</span> 
+          <input type="date" class="mr-1" /> 
+          <span></span>
+          <input type="date" class="mr-1" />
+        </div>
+        <form class="d-flex ">
+          <input class="form-control" type="search" placeholder="Search">
+          <button type="submit">Search</button>
+        </form>
+        <button type="button" class="create-ims " mdbRipple>Create IMS</button>
+        </div>
+       </header>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">IMS</th>
+            <th scope="col">Date</th>
+            <th scope="col">Responsable</th>
+            <th scope="col">Traitement etude impact</th>
+            <th scope="col">Statut PDCA</th>
+            <th scope="col">Taux de retard</th>
+            <th scope="col">Audit</th>
+            <th scope="col">Success check</th>
+            <th  scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active" *ngFor="let e of Data">
+            <td scope="row">{{e.IMS}}</td>
+            <td scope="row"><input type="date" class="mr-1" /> 
+              </td>
+            <td scope="row">
+              <mat-select placeholder="Responsable">
+                <mat-option *ngFor="let Res of Data" [value]="Res.Responsable">
+                  <p>{{ Res.Responsable }}</p>
+                </mat-option>
+              </mat-select>
+            </td>
+            <td scope="row">{{e.traitement_etude_impact}}</td>
+            <td scope="row">{{e.StatutPDCA}}</td>
+            <td scope="row">{{e.Taux_de_retard}}</td>
+            <td>
+              <select name="Status" id="Status">
+                <option value="in progress" class="in-progress">in progress</option>
+                <option value="Closed" class="closed">Closed</option>
+              </select>
+            </td>
+            <td>
+              <select name="Status" id="Status">
+                <option value="in progress" class="in-progress">in progress</option>
+                <option value="Closed" class="closed">Closed</option>
+              </select>
+            </td>
+           
+            <td><button type="button" class="btn btn-secondary btn-rounded" mdbRipple (click)="goToDetails()"> view details </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

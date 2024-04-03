@@ -1,0 +1,107 @@
+<div class="rectangle">
+    <div class="container-fluid page">
+<div class="imsstatus">IMS Status</div>
+    <div class="details">
+        <div class="detail-item">
+          <div class="icon"><i class="fa fa-calendar"></i></div>
+          <div class="text">
+            <div class="label">IMS Level</div>
+            <div class="value">01470</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="icon"><i class="fa fa-calendar"></i></div>
+          <div class="text">
+            <div class="label">Date</div>
+            <div class="value">12 juin 2024</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="icon"><i class="fa fa-user"></i></div>
+          <div class="text">
+            <div class="label">Responsable</div>
+            <div class="value">ALI BEN SALAH</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="icon"><i class="fa fa-check-circle"></i></div>
+          <div class="text">
+            <div class="label">Statut</div>
+            <div class="value">in progress</div>
+          </div>
+        </div>
+      </div>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>NOM</th>
+              <th>ENTITY</th>
+              <th>DATE/HOUR</th>
+              <th>USER</th>
+              <th>FILE</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Document de type N-A</td>
+              <td>LEONI TUNISIE</td>
+              <td>10 July 2023</td>
+              <td>salah ali</td>
+              <td><input type="file" (change)="onFileSelected($event)"/>
+              </td>
+             
+          </thead>
+        </table>
+<div class="table2">
+  <table>
+    <thead>
+      <tr>
+        <th>INSTRUCTION</th>
+        <th>TITLE</th>
+        <th>MAIN CHANGES</th>
+        <th>PROCESS</th>
+        <th>
+          RESPONSABLE ETUDE D'IMPACT
+        </th>
+        <TH>OPM</TH>
+        <th>STATUT ETUDE D'IMPACT</th>
+        <th>TAUT DE RETARD</th>
+      </tr>
+    </thead>
+    <tbody>  
+      <tr>
+        <td  *ngFor="let e of data">
+          {{e.instruction}}
+        </td>
+         <td  *ngFor="let e of data">
+          {{e.title}}</td>
+          <td  *ngFor="let e of data">
+            {{e.mainChanges}}</td>
+            <td *ngFor="let e of data">
+              {{e.process}}</td>
+              <td scope="row">
+                <mat-select placeholder="responsable">
+                  <mat-option *ngFor="let e of data" [value]="e.responsableei">
+                    <p>{{ e.responsableei }}</p>
+                  </mat-option>
+                </mat-select>
+              </td>
+              <td scope="row">
+                <mat-select placeholder="OPM">
+                  <mat-option *ngFor="let e of data" [value]="e.OPM">
+                    <p>{{ e.OPM }}</p>
+                  </mat-option>
+                </mat-select>
+              </td>
+      </tr>
+        </tbody>
+  </table>
+<button class="enregistrer">Enregistrer</button>
+<button class="envoyer">Envoi</button>
+
+<button class="btn btn-primary float-right">Exporter</button>
+</div>
+
+      </div>
+
+</div>
