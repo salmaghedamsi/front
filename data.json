@@ -1,0 +1,10 @@
+{
+    "IMS": [
+      { "IMS": "A41", "date":"4/30/2024","responsable": "John Doe" },
+      { "IMS":"C412 ", "date":"8/07/2024","responsable": "Jane Smith" },
+      { "IMS": "741", "date":"7/11/2024","responsable": "Alice Johnson" },
+      { "IMS": "AX471", "date":"24/1/2024","responsable": "Alice Johnson" }
+
+    ]
+  }
+  

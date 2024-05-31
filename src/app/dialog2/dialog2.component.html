@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>ajout IMS</h2>
+<div mat-dialog-content>
+  <form [formGroup]="ActionForm  ">
+        <mat-form-field appearance="outline">
+            <mat-label>Action à faire</mat-label>
+            <textarea matInput formControlName="Action"></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>détail de l'action</mat-label>
+            <textarea matInput formControlName="détail"></textarea>
+          </mat-form-field>
+              <mat-form-field appearance="outline">
+        <mat-label>Responsable</mat-label>
+        <mat-select formControlName="Responsable" placeholder="Responsable">
+            <mat-option value="two">
+               value1
+            </mat-option >
+            <mat-option value="one">
+                value2  </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>choisisez une date </mat-label>
+        <input formControlName="Date" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </form>
+</div>    
+  <div mat-dialog-actions [align]="'end'">
+        <button  mat-raised-button color="warn" mat-dialog-close>Close </button>
+        <button  style="margin-left : 8px;" mat-raised-button color="primary"(click)="AddAction()">Save </button>
+    </div>
+

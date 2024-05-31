@@ -13,11 +13,16 @@ import { HeaderComponent } from './header/header.component';
 import { ReportingComponent } from './reporting/reporting.component';
 import { ImsstatusComponent } from './imsstatus/imsstatus.component';
 import { ActionsComponent } from './actions/actions.component';
-
+import { Audit2Component } from './audit2/audit2.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { Router, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, 
+  imports: [RouterOutlet, CommonModule, 
     ActionsComponent,
     MatSidenavModule,
     MatDividerModule, 
@@ -30,7 +35,9 @@ import { ActionsComponent } from './actions/actions.component';
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatListModule,
+    MatListModule,Audit2Component,HttpClientModule,
+    RegisterComponent,
+    LoginComponent,
     
   ],
   
@@ -40,6 +47,24 @@ import { ActionsComponent } from './actions/actions.component';
 export class AppComponent {
   title = 'projet';
   sideBarOpen = true;
+  showLayout = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkRoute(event.url);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.checkRoute(this.router.url);
+  }
+
+  checkRoute(url: string): void {
+    const authRoutes = ['/login', '/register'];
+    this.showLayout = !authRoutes.includes(url);
+  }
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;

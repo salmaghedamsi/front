@@ -1,0 +1,91 @@
+<div class="login-box">
+<form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+  <div class="login-box">
+    <div class="login-header">
+        <header>Connexion</header>
+    </div>
+    <div class="input-box">
+      <input
+        type="text"
+        pInputText
+        formControlName="Name"
+        class="input-field"
+        name="Name"
+        placeholder="Type your name"
+        autocomplete="off"
+      />
+      <small
+        *ngIf="Name.invalid && (Name.dirty || Name.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="Name.errors?.['required']">Name is required.</div>
+        <div *ngIf="Name.errors?.['pattern']">Enter a valid Name</div>
+      </small>
+    </div>
+    <div class="input-box">
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        class="input-field"
+        name="email"
+        placeholder="Type your email"
+        autocomplete="off"
+      />
+      <small
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="block p-error" >
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Email should be valid</div>
+      </small>
+    </div>
+    <div class="input-box">
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        class="input-field"
+        name="password"
+        placeholder="Type your password"
+      />
+      <small
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="password.errors?.['required']">Password is required.</div>
+      </small>
+    </div>
+    <div class="input-box">
+      <input
+        type="password"
+        pInputText
+        formControlName="confirmPassword"
+        class="input-field"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+      />
+      <small
+        *ngIf="
+          confirmPassword.invalid &&
+          (confirmPassword.dirty || confirmPassword.touched)
+        "
+        class="block p-error"
+      >
+        <div *ngIf="confirmPassword.errors?.['required']">
+          Confirm the password
+        </div>
+      </small>
+      <small
+        class="block p-error"
+        *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+      >
+        Password should match
+      </small>
+    </div>
+    <div class="input-submit">
+      <button class="submit-btn" id="submit"></button>
+      <label for="submit">connecter</label>
+  </div>
+  </div>
+</form>
+</div>

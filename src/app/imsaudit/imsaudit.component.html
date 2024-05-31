@@ -1,1 +1,49 @@
-<p>imsaudit works!</p>
+<div class="imsaudit">IMS Audit</div>
+<div class="Details row">
+<div class="detail-item col-3 offset-1">
+  <div class="icon icon1"><i class="fa fa-search" aria-hidden="true"></i>
+  </div>
+  <div class="text">
+    <div class="label">N° de changement</div>
+    <div class="value">01470</div>
+  </div>
+</div>
+<div class="detail-item col-4">
+  <div class="icon icon3"><i class="fa fa-user"></i></div>
+  <div class="text">
+    <div class="label">Auditeur</div>
+    <div class="value">ALI BEN SALAH</div>
+  </div>
+</div>
+<div class="detail-item col-4">
+  <div class="icon icon2 "><i class="fa fa-calendar"></i></div>
+  <div class="text">
+    <div class="label">Date de l'audit</div>
+    <div class="value">12 juin 2024</div>
+  </div>
+</div>
+
+</div>
+<table>
+    <thead>
+      <tr>
+  <th  scope="col">N° changement</th>
+  <th scope="col">type document:TN,Site ou PF </th>
+  <th scope="col">Nr.Instruction</th>
+  <th scope="col">Titre du document</th>
+  <th scope="col">Raison:Creation/Amélioration/Suppression</th>
+  <th scope="col">Contenu detaillé</th>
+  <th scope="col">État de l'instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr  *ngFor="let item of Data">
+  <td scope="row"> <a [routerLink]="['/audit']">{{item.nchangement}}</a></td>
+  <td scope="row">{{item.type_document}}</td>
+  <td scope="row">{{item.nrinscrution}}</td>
+  <td scope="row">{{item.titre_doc}}</td>
+  <td scope="row">{{item.raison}}</td>
+  <td></td>
+  <td scope="row">{{item.etat}}</td>
+</tbody>
+</table>

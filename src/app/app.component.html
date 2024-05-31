@@ -1,12 +1,13 @@
-
-<mat-drawer-container>
+<mat-drawer-container *ngIf="showLayout">
   <mat-drawer mode="side" [opened]="sideBarOpen">
-<app-sidenav></app-sidenav>
+    <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>
-<app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
-<div class="rectangle">
-  <router-outlet></router-outlet>
-  </div>
+    <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+    <div class="rectangle">
+      <router-outlet></router-outlet>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<router-outlet *ngIf="!showLayout"></router-outlet>

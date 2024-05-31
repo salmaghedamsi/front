@@ -35,5 +35,9 @@ mat-drawer-content{
   overflow: hidden;
   box-sizing: border-box;
   background-color:white;
+  overflow: auto;
 }
-  
+#menu:target ~ .mat-drawer-container .rectangle {
+  width :500px;
+  background-color:purple;
+}

@@ -1,74 +1,86 @@
-  <div class="container-fluid page">
-    <header class="d-flex justify-content-between align-items-center">
-      <div class="home">Home</div>
-
-      <div class="container">
-        <mat-form-field class="mr-2">
-          <mat-select placeholder="status">
-            <mat-option >in progress</mat-option>
-            <mat-option >Closed</mat-option>
-          </mat-select>
+<div class="container-fluid page">
+  <header class="d-flex justify-content-between align-items-center">
+    <div class="home">Home</div>
+    <div class="container" >
+      <div class="d-flex align-items-start ">
+        <h6>
+          Statut
+        </h6>
+        <select name="" id="status-select">
+          <option value="en cour">en cour</option>
+          <option value="terminé">terminé</option>
+        </select>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a period</mat-label>
+          <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
-
-        <div class="expense-nav-bar"> 
-          <span class=" mr-1">Period</span> 
-          <input type="date" class="mr-1" /> 
-          <span></span>
-          <input type="date" class="mr-1" />
-        </div>
-        <form class="d-flex ">
-          <input class="form-control" type="search" placeholder="Search">
-          <button type="submit">Search</button>
+        
+        <form class="d-flex mb-2">
+          <input type="text" [(ngModel)]="searchText" name="searchTerm" >
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
         </form>
-        <button type="button" class="create-ims " mdbRipple>Create IMS</button>
-        </div>
-       </header>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">IMS</th>
-            <th scope="col">Date</th>
-            <th scope="col">Responsable</th>
-            <th scope="col">Traitement etude impact</th>
-            <th scope="col">Statut PDCA</th>
-            <th scope="col">Taux de retard</th>
-            <th scope="col">Audit</th>
-            <th scope="col">Success check</th>
-            <th  scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-active" *ngFor="let e of Data">
-            <td scope="row">{{e.IMS}}</td>
-            <td scope="row"><input type="date" class="mr-1" /> 
-              </td>
-            <td scope="row">
-              <mat-select placeholder="Responsable">
-                <mat-option *ngFor="let Res of Data" [value]="Res.Responsable">
-                  <p>{{ Res.Responsable }}</p>
-                </mat-option>
-              </mat-select>
-            </td>
-            <td scope="row">{{e.traitement_etude_impact}}</td>
-            <td scope="row">{{e.StatutPDCA}}</td>
-            <td scope="row">{{e.Taux_de_retard}}</td>
-            <td>
-              <select name="Status" id="Status">
-                <option value="in progress" class="in-progress">in progress</option>
-                <option value="Closed" class="closed">Closed</option>
-              </select>
-            </td>
-            <td>
-              <select name="Status" id="Status">
-                <option value="in progress" class="in-progress">in progress</option>
-                <option value="Closed" class="closed">Closed</option>
-              </select>
-            </td>
-           
-            <td><button type="button" class="btn btn-secondary btn-rounded" mdbRipple (click)="goToDetails()"> view details </button>
 
+        <button type="button" class="create-ims btn btn-success" mdbRipple (click)="openDialog()">Create IMS</button>
+          
+        </div>
+      </div>
+  
+     </header>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">IMS</th>
+          <th scope="col">Date</th>
+          <th scope="col">Responsable</th>
+          <th scope="col">Traitement etude impact</th>
+          <th scope="col">Taux de retard</th>
+          <th scope="col">Success check</th>
+          <th scope="col">Audit </th>
+          <th  scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let e of ims">
+          <td scope="row">{{e.id}}</td>
+          <td scope="row">{{e.date|date}}
             </td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
+          <td scope="row">
+            {{e.responsable}}
+          </td>
+          <td scope="row">{{e.traitementei}}</td>
+          <td scope="row">{{e.tauxretard}}</td>
+          <td>
+            <select name="Status" id="Status">
+              <option value="in progress" class="in-progress">in progress</option>
+              <option value="Closed" class="closed">Closed</option>
+            </select>
+          </td>
+          <td>
+            <select name="Status" id="Status">
+              <option value="in progress" class="in-progress">in progress</option>
+              <option value="Closed" class="closed">Closed</option>
+            </select>
+          </td>
+         
+          <td>
+            <button class="btn btn-danger" aria-label="Delete" style="margin-right: 7px;" (click)="confirmAndDelete(e.id)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="viewdetails btn btn-primary" mdbRipple (click)="goToDetails(e.id)">View Details</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+    <mat-paginator [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15, 50]"
+    aria-label="Select page">
+</mat-paginator></div>
+</div>

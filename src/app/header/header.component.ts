@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     MatMenuModule,
     MatToolbarModule,
-
+    DatePipe ,
     
   ],
   templateUrl: './header.component.html',
@@ -24,7 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class HeaderComponent   {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-
+public myDate=new Date();
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
@@ -32,4 +33,5 @@ export class HeaderComponent   {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+
 }

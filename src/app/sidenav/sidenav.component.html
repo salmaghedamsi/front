@@ -1,19 +1,16 @@
 <mat-nav-list>
     <div class="logo py-4">
-        <img src="C:\Users\ASUS\Desktop\test\test\src\image\logoLeoni.png" alt="Leoni logo"/>
+        <img src="\assets\Leoni_AG_Logo.svg.png" alt="Leoni logo"/>
     </div>
- <mat-divider></mat-divider>
- <h2 matSubheaher class="mt-10">APPLICATIONS</h2>
- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+<div class="navlist">
+ <a mat-list-item routerLinkActive="list-item-active" routerLink="/home" style="color: white  !important;" class="mt-5">
   <mat-icon>home</mat-icon> Home
 </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/imsstatus" >
-    <mat-icon>list</mat-icon> IMS status
-  </a>
 <a mat-list-item routerLinkActive="list-item-active" routerLink="/imsaudit">
     <mat-icon>list</mat-icon> IMS Audit
 </a>
 <a mat-list-item routerLinkActive="list-item-active" routerLink="/reporting">
     <mat-icon>report</mat-icon> Reporting
   </a>
+</div>
 </mat-nav-list>

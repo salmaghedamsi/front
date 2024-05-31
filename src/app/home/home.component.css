@@ -6,16 +6,10 @@
   left : 2 0px;
   margin-top : 20px;
 }
-.d-flex{
-margin:0;
-padding:0;
-box-sizing: border-box;
-}
 
-select#Status,.expense-nav-bar,.d-flex,.btn.btn-primary.btn-rounded {
-  display: inline-block;
+.container{ 
+   display: inline-block;
 }
-
 
 .home{
   color: var(--dark-grey, #252525);
@@ -24,8 +18,8 @@ select#Status,.expense-nav-bar,.d-flex,.btn.btn-primary.btn-rounded {
   font-size: 25px;
   line-height: 130%;
   font-weight: 700;
-  position: relative;
-  margin-bottom : 20px
+  margin-bottom : 20px;
+  
 }
 
 
@@ -50,11 +44,15 @@ table {
   box-shadow: 0 .4rem .8rem #0005;
   width : 95%;
   max-height : calc(89% - 1.6rem);
-  background-color: #fffb;
   margin: .8rem auto;
-  border-radius: .6rem;
+  border-radius: .8rem;
+  color: #000000;
+  text-align : left;
+  font-family: "Roboto-Light", sans-serif;
+  font-size: 11px;
 
 }
+/*/
 table:-webkit-scrollbar{
   width : 0.5rem;
   height : 0.5rem;
@@ -68,10 +66,10 @@ table:-webkit-scrollbar-thumb{
 table:hover::-webkit-scrollbar-thumb{ 
   visibility: visible;
 }
-
+*/
 
 table {
-  width : 100%;
+  width : 95%;
 
 }
 table, th, td {
@@ -88,26 +86,25 @@ thead th {
   background-color: #EAF1FF;
   cursor: pointer;
   text-transform: capitalize;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 13px;
 }
-tbody tr:nth-child(even) {
-  background-color: #0000000b;
-}
+
 
 tbody tr {
   --delay: .1s;
-  transition: .5s ease-in-out var(--delay),
+  transition: .5s ease-in-out var(--delay);
+  background-color: white !important;
 }
 tbody tr.hide {
   opacity: 0;
   transform: translateX(100%);
 }
 
-tbody tr:hover {
-  background-color: #fff6 ;
-}
 tbody tr td,
 tbody tr td p{
     transition: .2s ease-in-out;
+    background-color: #ffff;
 }
 tbody tr.hide td,
 tbody tr.hide td p {
@@ -115,11 +112,7 @@ tbody tr.hide td p {
     font: 0 / 0 sans-serif;
     transition: .2s ease-in-out .5s;
 }
-select#Status{ 
-  padding: .4rem 0;
-  border-radius: 2rem;
-  text-align: center;
-}
+
 .in-progress {
   background-color: #86e49d;
     color: #006b21;
@@ -134,21 +127,103 @@ select#Status{
   }
 }
 .create-ims{
-  padding: 10px 20px;
+  padding: 5px 10px;
   margin-left : 10px;
   color:#ffff;
+  font-family: "Roboto-Bold", sans-serif;
   background-color: #003C88;
   cursor:pointer;
   border-radius: 10px;
 }
-input{
-  padding: 10px 10px;
-  margin-left : 10px;
-  outline:none;
-  border: 1px solid #E0E0E0;
-  border-radius: 6px;
+
+mat-paginator{
+  margin-top : 30px;
 }
 
+#status-select{
+  width : 100px !important;
+  margin-right : 10px;
+}
 
+.viewdetails{
+  background-color: #ffff;
+  color:  #718ebf;
+  border-color: #718ebf;
+  align-items: center;
+  width : 121px;
+  height : 26px;
+  border-radius: 30px; 
+  cursor: pointer; 
+}
+.viewdetails:hover {
+  background-color: #0056b3; 
+}
+.mat-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
 
+.mat-paginator-navigation {
+  margin: 0 5px;
+  background-color: #0056b3;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
+.mat-paginator-navigation:hover {
+  background-color: #004080;
+}
+
+/* Style pour les options de taille de page */
+.mat-select-value,
+.mat-select-arrow {
+  color: #666;
+}
+
+.mat-select-trigger:hover .mat-select-arrow {
+  color: #0056b3;
+}
+
+/* Style pour les informations sur la pagination */
+.mat-paginator-range-label,
+.mat-paginator-page-size-label {
+  color: #666;
+}
+
+/* Style pour la taille de police des boutons */
+.mat-paginator-page-size,
+.mat-select-value,
+.mat-select-arrow {
+  font-size: 14px;
+}
+
+/* Style pour la flèche de défilement */
+.mat-paginator-navigation .mat-icon {
+  font-size: 18px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.mat-paginator-navigation .mat-icon:hover {
+  color: #0056b3;
+}
+
+/* Style pour les boutons de navigation désactivés */
+.mat-paginator-navigation-disabled {
+  background-color: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Style pour la taille de page sélectionnée */
+.mat-paginator-page-size-option {
+  color: #666;
+}
+
+.mat-paginator-page-size-option:hover {
+  background-color: #f0f0f0;
+}

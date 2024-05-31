@@ -1,32 +1,87 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatOptionModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
+import { DialogComponent } from '../dialog/dialog.component';
+import { OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ImsService } from '../service/ims.service';
+import { Ims } from '../model/ims';
+
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule,
-    MatSelectModule ,
-    MatOptionModule],
+  imports: [
+    CommonModule, 
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+    ,ReactiveFormsModule ,HttpClientModule
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  constructor(private route: Router){}
-  searchText: any;
-Data=[
-  {IMS :1, date: 8,Responsable:"salah",traitement_etude_impact:"oui",StatutPDCA:"ok",Taux_de_retard:
-  14,audit:"in progress",sucess_check:""},
-  {IMS :4, date: 74 ,Responsable:"ali",traitement_etude_impact:"oui",StatutPDCA:"ok",Taux_de_retard:
-14,audit:"",sucess_check:""},
-{IMS :789, date: 14 ,Responsable:"sarra",traitement_etude_impact:"oui",StatutPDCA:"ok",Taux_de_retard:
-14,audit:"",sucess_check:""},
-]
-goToDetails(){
-this.route.navigate(["/imsstatus"]);
-}
+
+export class HomeComponent implements OnInit {
+  ims: Ims[] = [];
+
+  dateRangeForm = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
+  });
+
+  searchText: string = '';
+
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private imsService: ImsService
+  ) {}
+
+  ngOnInit(): void {
+    this.getAllIms();
+  }
+
+  private getAllIms(): void {
+    this.imsService.getAllIms().subscribe((data) => {
+      this.ims = data;
+    });
+  }
+  confirmAndDelete(id: number): void {
+    if (confirm('Are you sure you want to delete this IMS?')) {
+      this.deleteIms(id);
+    }
+  }
+
+  private deleteIms(id: number): void {
+    this.imsService.deleteIms(id).subscribe(data => {
+      console.log(data);
+      this.getAllIms();
+    });
+  }
+  
+  goToDetails(id: number): void {
+    this.router.navigate(['/imsstatus', id]);
+  }
+
+  openDialog(): void {
+    this.dialog.open(DialogComponent, { width: '30%' });
+  }
+
 }
