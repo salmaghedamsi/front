@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { MessageService } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private msgService: MessageService
+    private msgService: MessageService,
+    private http:HttpClient,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
   get email() {
     return this.loginForm.controls['email'];
@@ -39,18 +42,14 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     const { email, password } = this.loginForm.value;
-    this.authService.getUserByEmail(email as string).subscribe(
+    this.authService.loginUser(email, password).subscribe(
       response => {
-        if (response.length > 0 && response[0].password === password) {
-          sessionStorage.setItem('email', email as string);
-          this.router.navigate(['/home']);
-        } else {
-          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'email or password is wrong' });
-        }
+        console.log('Login successful', response);
+        sessionStorage.setItem('email', email);
+        this.router.navigate(['/home']);
       },
       error => {
-        this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+        this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Email or password is wrong' });
       }
-
-    )
-  }}
+    );
+}  }

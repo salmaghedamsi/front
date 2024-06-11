@@ -1,33 +1,38 @@
 <div class="container-fluid page">
-  <header class="d-flex justify-content-between align-items-center">
+ 
+  <header class="cont">
     <div class="home">Home</div>
     <div class="container" >
-      <div class="d-flex align-items-start ">
+     
         <h6>
           Statut
         </h6>
-        <select name="" id="status-select">
-          <option value="en cour">en cour</option>
+
+        <div id="status-select">
+        <select name=""  class=" rounded-left border border-grey">
+          <option value="en cour">en progrés</option>
           <option value="terminé">terminé</option>
         </select>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter a period</mat-label>
-          <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeForm">
-            <input matStartDate formControlName="start" placeholder="Start date">
-            <input matEndDate formControlName="end" placeholder="End date">
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
-        
-        <form class="d-flex mb-2">
-          <input type="text" [(ngModel)]="searchText" name="searchTerm" >
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-        </form>
+      </div>
+<div class="period">
+<b>Période</b><br/>
 
-        <button type="button" class="create-ims btn btn-success" mdbRipple (click)="openDialog()">Create IMS</button>
-          
+     <input type="date" class=" rounded-left border border-grey">-<input type="date" class=" rounded-left border border-grey">
+</div>
+    
+      <div >
+        <form  class="serachform" >
+          <div >
+          <input type="text" [(ngModel)]="searchText" name="searchTerm" class=" rounded-left border border-grey">
         </div>
+          <button type="submit" class="searchbtn"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
+      <div>
+        <button type="button" class="create-ims btn btn-success" mdbRipple (click)="openDialog()">Créer une  IMS</button>
+      </div>  
+   
       </div>
   
      </header>
@@ -52,18 +57,18 @@
           <td scope="row">
             {{e.responsable}}
           </td>
-          <td scope="row">{{e.traitementei}}</td>
-          <td scope="row">{{e.tauxretard}}</td>
+          <td scope="row">0%</td>
+          <td scope="row">0%</td>
           <td>
-            <select name="Status" id="Status">
-              <option value="in progress" class="in-progress">in progress</option>
-              <option value="Closed" class="closed">Closed</option>
+            <select name="Status" id="Status" (change)="updateStatus(e.id, $event, 'sucesscheck')">
+              <option value="en progrés" class="in-progress" [selected]="e.sucesscheck === 'en progrés'">en progrés</option>
+              <option value="Cloturée" class="closed" [selected]="e.sucesscheck === 'Cloturée'">Cloturée</option>
             </select>
           </td>
           <td>
-            <select name="Status" id="Status">
-              <option value="in progress" class="in-progress">in progress</option>
-              <option value="Closed" class="closed">Closed</option>
+            <select name="Status" id="Status" (change)="updateStatus(e.id, $event, 'audit')">
+              <option value="en progrés" class="in-progress" [selected]="e.audit === 'en progrés'">en progrés</option>
+              <option value="Cloturée" class="closed" [selected]="e.audit === 'Cloturée'">Cloturée</option>
             </select>
           </td>
          
@@ -71,7 +76,7 @@
             <button class="btn btn-danger" aria-label="Delete" style="margin-right: 7px;" (click)="confirmAndDelete(e.id)">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
-            <button type="button" class="viewdetails btn btn-primary" mdbRipple (click)="goToDetails(e.id)">View Details</button>
+            <button type="button" class="viewdetails btn btn-primary" mdbRipple (click)="goToDetails(e.id)"> Détails</button>
 
           </td>
         </tr>

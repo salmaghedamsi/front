@@ -7,7 +7,7 @@ import { ActionsComponent } from './actions/actions.component';
 import { Audit2Component } from './audit2/audit2.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { authGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 
@@ -17,7 +17,7 @@ export const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'imsstatus/:id',component:ImsstatusComponent},
   {path:'imsaudit',component:ImsauditComponent},
-  {path:'reporting',component:ReportingComponent,canActivate: [authGuard]},
+  {path:'reporting',component:ReportingComponent,canActivate: [AuthGuard]},
   {path:'action/:id',component:ActionsComponent},
   {path:'audit',component:Audit2Component},
  {path:'register',component:RegisterComponent},

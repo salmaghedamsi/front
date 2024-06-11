@@ -2,7 +2,7 @@
 <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
   <div class="login-box">
     <div class="login-header">
-        <header>Connexion</header>
+        <header>Créer un compte</header>
     </div>
     <div class="input-box">
       <input
@@ -55,37 +55,10 @@
         <div *ngIf="password.errors?.['required']">Password is required.</div>
       </small>
     </div>
-    <div class="input-box">
-      <input
-        type="password"
-        pInputText
-        formControlName="confirmPassword"
-        class="input-field"
-        name="confirmPassword"
-        placeholder="Confirm Password"
-      />
-      <small
-        *ngIf="
-          confirmPassword.invalid &&
-          (confirmPassword.dirty || confirmPassword.touched)
-        "
-        class="block p-error"
-      >
-        <div *ngIf="confirmPassword.errors?.['required']">
-          Confirm the password
-        </div>
-      </small>
-      <small
-        class="block p-error"
-        *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
-      >
-        Password should match
-      </small>
-    </div>
+   
     <div class="input-submit">
-      <button class="submit-btn" id="submit"></button>
-      <label for="submit">connecter</label>
-  </div>
+      <button class="submit-btn" type="submit">Connecter</button>
+    </div>
   </div>
 </form>
 </div>

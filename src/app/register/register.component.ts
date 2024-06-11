@@ -27,9 +27,7 @@ export class RegisterComponent implements OnInit {
       Name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
     }, {
-      validators: passwordMatchValidator
     });
   }
 
@@ -58,8 +56,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login']);
       },
       error => {
-        console.error(error);
-      }
+        if (error.status === 403) {
+          console.error('Email already exists');
+        } else {
+          console.error('Registration failed:', error);
+        }}
     );
   }
 }

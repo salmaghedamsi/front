@@ -13,7 +13,8 @@ export class InstructionService {
     return this.http.get<Instruction[]>(`${this.BaseUrl}?imsId=${imsId}`);
   }
 
-  createInstruction(instruction: Instruction): Observable<Object> {
-    return this.http.post(`${this.BaseUrl}`, instruction);
+  createInstruction(instruction: Instruction, imsId: number): Observable<Instruction> {
+    const url = `${this.BaseUrl}?imsId=${imsId}`;
+    return this.http.post<Instruction>(url, instruction);
   }
 }

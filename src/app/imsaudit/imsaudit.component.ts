@@ -1,18 +1,27 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
-import { Audit2Component } from '../audit2/audit2.component';
+import { RapportService } from '../service/rapport.service';
+import { rapport } from '../model/rapport';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-imsaudit',
-  standalone: true,
-  imports: [CommonModule,RouterModule,Audit2Component],
+  imports: [NgForm],
   templateUrl: './imsaudit.component.html',
-  styleUrl: './imsaudit.component.css'
+  styleUrls: ['./imsaudit.component.css']
 })
 export class ImsauditComponent {
-  constructor(private route: Router){}
-  Data=[
-    {nchangement:11471, type_document:"tn",nrinscrution:"14A",titre_doc:"doc1",raison:"suppression",etat:"en cour"},
-    {nchangement:771, type_document:"tn",nrinscrution:"17A",titre_doc:"doc1",raison:"suppression",etat:"en cour"},
-    ]}
+  newItem: rapport = new rapport(0, '', '', '', '', '', '', '', '', '', '', '', '', '');
+
+  constructor(private rapportservice: RapportService) {}
+
+  addItem(): void {
+    this.rapportservice.saveAudit(this.newItem).subscribe(
+      response => {
+        console.log('Audit saved successfully', response);
+        
+      },
+      error => {
+        console.error('Error saving audit', error);
+      }
+    );
+  }
+}
