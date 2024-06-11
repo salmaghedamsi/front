@@ -41,6 +41,13 @@ import { Ims } from '../model/ims';
 export class HomeComponent implements OnInit {
   ims: Ims[] = [];
 
+  date1:any;
+  date2:any;
+  days:any;
+  selectClasscheck: string = '';
+  selectaudit: string = '';
+
+
   dateRangeForm = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
@@ -82,6 +89,16 @@ export class HomeComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(DialogComponent, { width: '30%' });
+  }
+  updateStatus(id: number, event: Event, field: 'sucesscheck' | 'audit'): void {   
+     const value = (event.target as HTMLSelectElement).value;
+    this.imsService.getImsById(id).subscribe(ims => {
+      ims[field] = value;
+      this.imsService.updateIms(id, ims).subscribe(data => {
+        console.log('Status updated successfully', data);
+        this.getAllIms();
+      });
+    });
   }
 
 }

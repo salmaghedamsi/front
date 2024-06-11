@@ -1,98 +1,84 @@
 <div class="imsstatus">IMS Status</div>
-<p >Details</p>
+<p>Détails</p>
 <div class="Details">
-
-<div class="row">
-
-<div class="detail-item col-6" >
-
-<div class="icon icon1"><i class="fa fa-search" aria-hidden="true"></i>
-</div>
-<div class="text">
-<div class="label ">IMS Level</div>
-<div class="value">{{ims.id}}</div>
-</div>
-</div>
-<div class="detail-item col-6">
-<div class="icon icon2 "><i class="fa fa-calendar"></i></div>
-<div class="text">
-<div class="label">Date</div>
-<div class="value">{{ims.date |date}}</div>
-</div>
-</div>
-<div class="detail-item col-6">
-<div class="icon icon3"><i class="fa fa-user"></i></div>
-<div class="text">
-<div class="label">Responsable</div>
-<div class="value">{{ims.responsable}}</div>
-</div>
-</div>
-<div class="detail-item col-6">
-<div class="icon icon4"><i class="fa fa-check-circle"></i></div>
-<div class="text">
-<div class="label">Statut</div>
-<div class="value">{{ims.sucesscheck}}</div>
-</div>
-</div>
-</div>
+  <div class="row">
+    <div class="detail-item col-6">
+      <div class="icon icon1"><i class="fa fa-search" aria-hidden="true"></i></div>
+      <div class="text">
+        <div class="label">IMS Level</div>
+        <div class="value">{{ ims.id }}</div>
+      </div>
+    </div>
+    <div class="detail-item col-6">
+      <div class="icon icon2"><i class="fa fa-calendar"></i></div>
+      <div class="text">
+        <div class="label">Date</div>
+        <div class="value">{{ ims.date | date }}</div>
+      </div>
+    </div>
+    <div class="detail-item col-6">
+      <div class="icon icon3"><i class="fa fa-user"></i></div>
+      <div class="text">
+        <div class="label">Responsable</div>
+        <div class="value">{{ ims.responsable }}</div>
+      </div>
+    </div>
+    <div class="detail-item col-6">
+      <div class="icon icon4"><i class="fa fa-check-circle"></i></div>
+      <div class="text">
+        <div class="label">Statut</div>
+        <div class="value">{{ ims.audit }}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="table">
-<table>
-  <thead>
-    <tr>
-      <th  scope="col">NOM</th>
-      <th  scope="col">ENTITY</th>
-      <th  scope="col">DATE/HOUR</th>
-      <th  scope="col">USER</th>
-      <th  scope="col">FILE</th>
-      
-    </tr>
-    <tr>
-      <td>Document de type N-A</td>
-      <td>LEONI TUNISIE</td>
-      <td>10 July 2023</td>
-      <td>salah ali</td>
-      <td><input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls">
-  </thead>
-</table>
-<div class="table2">
-<table>
-<thead>
-<tr>
-<th  scope="col">INSTRUCTION</th>
-<th  scope="col">TITLE</th>
-<th scope="col">MAIN CHANGES</th>
-<th scope="col">PROCESS</th>
-<th scope="col">
-  RESPONSABLE ETUDE D'IMPACT
-</th>
-<th scope="col">STATUT ETUDE D'IMPACT</th>
-<th scope="col">TAUT DE RETARD</th>
-<th></th>
-</tr>
-</thead>
-<tbody>  
-<tr *ngFor="let row of excelData">
-<td>
-  <a [routerLink]="['/action', row.id]">{{ row.id }}</a>
-</td>
-<td>{{ row.titre }}</td>
-<td>{{ row.main_changes }}</td>
-<td>{{ row.process }}</td>
-<td><div class="input-group input-group-sm mb-3">
-  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-</div>
-</td>
-<td>
-</td>
-<td>
-</td><td>
-<button class="enregistrer" (click)="addInstructions()">Enregistrer</button></td>
-</tbody>
-</table>
-<button class="envoyer">Envoi</button>
-<i class="fa fa-download download-icon"   aria-hidden="true"  (click)="downloadcsvfile()"></i>
-</div>
-
+<div class="table1">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Fichier</th>
+        <th scope="col"><input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls"></th>
+      </tr>
+    </thead>
+  </table>
+  <div class="table2">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">INSTRUCTION</th>
+          <th scope="col">TITLE</th>
+          <th scope="col">MAIN CHANGES</th>
+          <th scope="col">PROCESS</th>
+          <th scope="col">RESPONSABLE ETUDE D'IMPACT</th>
+          <th scope="col">STATUT ETUDE D'IMPACT</th>
+          <th scope="col">TAUT DE RETARD</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of excelData; let i = index">
+          <td><a [routerLink]="['/action', row.id]">{{ row.id }}</a></td>
+          <td>{{ row.titre }}</td>
+          <td>{{ row.main_changes }}</td>
+          <td>{{ row.process }}</td>
+          <td>
+            <select class="form-control" [(ngModel)]="row.responsable">
+              <option *ngFor="let user of ResponsableEI" [value]="user.name">{{ user.name }}</option>
+            </select>
+          </td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>
+            <button class="enregistrer" (click)="addInstructions(row, i)">Enregistrer</button>
+          </td>
+          <td>
+            <button class="envoyer" (click)="sendEmail(row.responsable)">Envoi</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <i class="fa fa-download download-icon" aria-hidden="true" (click)="downloadcsvfile()"></i>
+  </div>
 </div>

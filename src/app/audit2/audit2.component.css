@@ -19,7 +19,9 @@
     line-height: 130%;
     font-weight: 700;
     position: relative;
-    margin-bottom : 20px
+    margin-bottom : 20px;
+    margin-left: 20px;
+    margin-top: 40px;
   }
   
   
@@ -183,4 +185,14 @@
         font: 0 / 0 sans-serif;
         transition: .2s ease-in-out .5s;
     }
-  
+    button 
+    {
+    background-color: #ffff;
+    color:  #718ebf;
+    border-color: #718ebf;
+    align-items: center;
+    width : 121px;
+    height : 26px;
+    border-radius: 30px; 
+    cursor: pointer;
+  }

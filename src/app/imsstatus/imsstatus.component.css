@@ -7,6 +7,7 @@
     margin-top : 20px
   }
 
+
   .imsstatus {
   color: var(--dark-grey, #252525);
   text-align : left;
@@ -17,7 +18,12 @@
   margin-top :20px;
   margin-left : 20px;
 } 
-
+p{
+  color: #333b69;
+margin-left: 30px;
+font-family: "Inter-SemiBold", sans-serif;
+  font-size: 19px;
+  font-weight: 600;}
   table {
     box-shadow: 0 .4rem .8rem #0005;
     max-height : calc(89% - 1.6rem);
@@ -97,7 +103,7 @@
   .Details {
     display: flex;
    flex-wrap: wrap;
-   margin-left : 20px;
+   margin-left : 40px;
    }
   
     .detail-item {
@@ -165,11 +171,16 @@
 button{
   background-color: #ffff;
   color:  #718ebf;
-  border-color: #718ebf;
+  border-color: #718ebf;                   
   align-items: center;
   width : 121px;
   height : 26px;
   border-radius: 30px; 
   cursor: pointer; 
   vertical-align: middle;
-  }
+  
+}
+
+.envoyer{
+  vertical-align: middle;
+}

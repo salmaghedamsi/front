@@ -1,370 +1,52 @@
-<div class="actions">actions</div>
-<table>
+<form [formGroup]="actionsForm" (ngSubmit)="saveAllActions()">
+  <div class="actions">actions</div>
+  <table>
     <tr>
-        <th>Action à faire</th>
-        <th>O/N</th>
-        <th>Détail d'action</th>
-        <th>Responsable</th>
-        <th>Délai</th>
-        <th>Attachement</th>
-        <th>Statut</th>
-        <th>Commentaire QMS Central Data Entry</th>
-        <th></th>
+      <th>Action à faire</th>
+      <th>O/N</th>
+      <th>Détail d'action</th>
+      <th>Responsable</th>
+      <th>Délai</th>
+      <th>Attachement</th>
+      <th>Statut</th>
+      <th>Commentaire QMS Central Data Entry</th>
+      <th></th>
     </tr>
-    <tr>
-       <td> Formation des responsabilités citées dans l'instruction et concernés par le changement ou la création </td>
-       <td>
-        <select name="o/n" id="o/n">
-          <option value="oui" class="oui">oui</option>
-          <option value="non" class="non">non</option>
-        </select>
-      </td>   
-      <td><div class="input-group input-group-sm mb-3">
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div></td>
-    <td>
-      <select name="o/n" id="o/n">
-        <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-      </select>
-    </td>
-    <td><input type="date" class="mr-1" /> 
-              </td>
-              <td><input type="file" (change)="onFileSelected($event)"/>
-              </td>
-              <td>
-                <select name="status" id="status" class="full-width-select">
-                  <option value="en attente">en attente</option>
-                  <option value="en progression">en progression</option>
-                  <option value="cloturée">Cloturée</option>
-                </select>
-              </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="enregistrer">Enregistrer</button>
-              </td>
-     </tr>
-<tr>
-       <td>Traduction de l'instruction en français</td>
-       <td>
-        <select name="o/n" id="o/n">
-          <option value="oui" class="oui">oui</option>
-          <option value="non" class="non">non</option>
-        </select>
-      </td>  
-     <td>
-      <div class="input-group input-group-sm mb-3">
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div></td>
-    <td>
-        <select name="o/n" id="o/n">
-          <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-        </select>
-    </td>
-    <td><input type="date" class="mr-1" /> 
-    </td>
-    <td><input type="file" (change)="onFileSelected($event)"/>
-    </td>
-    <td>
-      <select name="status" id="status" class="full-width-select">
-        <option value="en attente">en attente</option>
-        <option value="en progression">en progression</option>
-        <option value="cloturée">Cloturée</option>
-      </select>
-    </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    
-    <tr>
-       <td>Création ou màj d'une instruction interne </td>
-       <td>
-        <select name="o/n" id="o/n">
-          <option value="oui" class="oui">oui</option>
-          <option value="non" class="non">non</option>
-        </select>
-      </td>   
-      <td><div class="input-group input-group-sm mb-3">
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div></td>
-    <td>
-      <select name="o/n" id="o/n">
-        <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-      </select>
-    </td>
-    <td><input type="date" class="mr-1" /> 
-    </td>
-    <td><input type="file" (change)="onFileSelected($event)"/>
-    </td>
-    <td>
-      <select name="status" id="status" class="full-width-select">
-        <option value="en attente">en attente</option>
-        <option value="en progression">en progression</option>
-        <option value="cloturée">Cloturée</option>
-      </select>
-    </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-       <td>Mise à jour des instruction liées</td>
-       <td>
-        <select name="o/n" id="o/n">
-          <option value="oui" class="oui">oui</option>
-          <option value="non" class="non">non</option>
-        </select>
-      </td>
-      <td><div class="input-group input-group-sm mb-3">
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div></td>
-    <td>
-      <select name="o/n" id="o/n">
-        <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-      </select>
-    </td>
-    <td><input type="date" class="mr-1" /> 
-    </td>
-    <td><input type="file" (change)="onFileSelected($event)"/>
-    </td>
-    <td>
-      <select name="status" id="status" class="full-width-select">
-        <option value="en attente">en attente</option>
-        <option value="en progression">en progression</option>
-        <option value="cloturée">Cloturée</option>
-      </select>
-    </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>Mise à jour de fichier CSR</td>
+    <ng-container formArrayName="actions">
+      <tr *ngFor="let action of actionsControls; let i = index" [formGroupName]="i">
+        <td>{{ action.get('name')?.value }}</td>
         <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>  
-          <td><div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div></td> 
-        <td>
-          <select name="o/n" id="o/n">
-            <option *ngFor="let item of data" [value]="item">{{ item }}</option>
+          <select formControlName="oui">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
           </select>
         </td>
-        <td><input type="date" class="mr-1" /> 
-        </td>
-        <td><input type="file" (change)="onFileSelected($event)"/>
-        </td>
         <td>
-          <select name="status" id="status" class="full-width-select">
-            <option value="en attente">en attente</option>
-            <option value="en progression">en progression</option>
-            <option value="cloturée">Cloturée</option>
-          </select>
-        </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div>   </td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>Mise à jour du modèle tortue</td>
-        <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>  
-          <td><div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div></td>
-        <td>
-          <select name="o/n" id="o/n">
-            <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-          </select>
-        </td> 
-        <td><input type="date" class="mr-1" /> 
-        </td>
-        <td><input type="file" (change)="onFileSelected($event)"/>
-        </td>
-        <td>
-          <select name="status" id="status" class="full-width-select">
-            <option value="en attente">en attente</option>
-            <option value="en progression">en progression</option>
-            <option value="cloturée">Cloturée</option>
-          </select>
-        </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>Mise à jour de l'AMDEC(FMEA) ou/et Plan de surveillance</td>
-        <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>   
-          <td><div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div></td>
-        <td>
-          <select name="o/n" id="o/n">
-            <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-          </select>
-        </td>
-        
-        
-        <td><input type="date" class="mr-1" /> 
-        </td>
-        <td><input type="file" (change)="onFileSelected($event)"/>
-        </td>
-        <td>
-          <select name="status" id="status" class="full-width-select">
-            <option value="en attente">en attente</option>
-            <option value="en progression">en progression</option>
-            <option value="cloturée">Cloturée</option>
-          </select>
-        </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>Mise à jour de support de formation qui porte sur le sujet de l'instruction (si ça existe) </td>
-        <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>   
-          <td><div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div></td>
-        <td>
-          <select name="o/n" id="o/n">
-            <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-          </select>
-        </td>
-        <td><input type="date" class="mr-1" /> 
-        </td>
-        <td><input type="file" (change)="onFileSelected($event)"/>
-        </td>
-        <td>
-          <select name="status" id="status" class="full-width-select">
-            <option value="en attente">en attente</option>
-            <option value="en progression">en progression</option>
-            <option value="cloturée">Cloturée</option>
-          </select>
-        </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>Affichage /mise à jour de l'affichage de l'instruction sur poste de travail</td>
-        <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>   
-          <td>
           <div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div> </td>
+            <input type="text" class="form-control" formControlName="detail">
+          </div>
+        </td>
         <td>
-          <select name="o/n" id="o/n">
-            <option *ngFor="let item of data" [value]="item">{{ item }}</option>
+          <select formControlName="responsable">
+            <option *ngFor="let user of responsableA" [value]="user.id">{{ user.name }}</option>
           </select>
         </td>
-        <td><input type="date" class="mr-1" /> 
-        </td>
-        <td><input type="file" (change)="onFileSelected($event)"/>
-        </td>
+        <td><input type="date" class="mr-1" formControlName="delai"></td>
+        <td><input type="file" (change)="onFileSelected($event, i)"></td>
         <td>
-          <select name="status" id="status" class="full-width-select">
+          <select formControlName="statut">
             <option value="en attente">en attente</option>
             <option value="en progression">en progression</option>
             <option value="cloturée">Cloturée</option>
           </select>
         </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="envoyer">Envoi</button>
-              </td>
-    </tr>
-    <tr>
-        <td>pas d'impact</td>
         <td>
-            <select name="o/n" id="o/n">
-              <option value="oui" class="oui">oui</option>
-              <option value="non" class="non">non</option>
-            </select>
-          </td>   
-          <td><div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-          </div></td>
-            <td>
-              <select name="o/n" id="o/n">
-                <option *ngFor="let item of data" [value]="item">{{ item }}</option>
-              </select>
-            </td>
-            <td><input type="date" class="mr-1" /> 
-            </td>
-            <td><input type="file" (change)="onFileSelected($event)"/>
-            </td>
-            <td>
-              <select name="status" id="status" class="full-width-select">
-                <option value="en attente">en attente</option>
-                <option value="en progression">en progression</option>
-                <option value="cloturée">Cloturée</option>
-              </select>
-            </td>
-            
-            <td>
-              <div class="input-group input-group-sm mb-3">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-              </div></td>
-              <td><button class="enregistrer">Enregistrer</button>
-              </td>
-    </tr>
-</table>
-<button class="envoyer">Envoi</button>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" >
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+  <button type="submit" class="enregistrer">Enregistrer</button>
+</form>

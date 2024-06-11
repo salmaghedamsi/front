@@ -6,7 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
-
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -28,8 +28,8 @@ export class HeaderComponent   {
 public myDate=new Date();
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+  }
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }

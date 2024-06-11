@@ -21,6 +21,7 @@
   position: relative;
   margin-bottom : 20px;
   margin-left: 20px;
+  margin-top: 40px;
 }
 
 
@@ -45,7 +46,7 @@
     .detail-item {
       display: flex;
       align-items: center;
-      margin-left : 10px;
+      margin-left : 30px;
 
       margin-bottom : 20px;
       border-radius: 8px;

@@ -7,7 +7,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { ImsauditComponent } from './imsaudit/imsaudit.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { ReportingComponent } from './reporting/reporting.component';
@@ -22,12 +21,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
+  
   imports: [RouterOutlet, CommonModule, 
     ActionsComponent,
     MatSidenavModule,
     MatDividerModule, 
     SidenavComponent,
-    ImsauditComponent,
     HomeComponent,
     ImsstatusComponent,
     HeaderComponent,

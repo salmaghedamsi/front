@@ -13,7 +13,9 @@ import { Ims } from '../model/ims';
 import { InstructionService } from '../service/instruction.service';
 import { Instruction} from '../model/instruction';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { UserService } from '../service/user.service';
+import { user } from '../model/user';
+import { EmailService } from '../service/email.service';
 @Component({
   selector: 'app-imsstatus',
   standalone: true,
@@ -25,17 +27,21 @@ export class ImsstatusComponent implements OnInit {
   excelData: any[] = [];
   ims: Ims;
   instructions: Instruction[] = [];  
+  ResponsableEI: user[] = [];
   constructor(
     private route: Router,
     private instructionService: InstructionService,
     private imsService: ImsService,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService:UserService,
+    private emailService:EmailService
   ) {
     this.ims = new Ims(0, new Date(), '', 0, 0, '', '');
   }
 
   ngOnInit(): void {
+    this.getResponsableEI();
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       if (id) {
@@ -43,7 +49,11 @@ export class ImsstatusComponent implements OnInit {
       }
     });
   }
-
+  getResponsableEI(): void {
+    this.userService.getUsers().subscribe(users => {
+      this.ResponsableEI = users.filter(user => user.role === 'ResponsableEI');
+    });
+  }
   fetchImsData(id: number) {
     this.imsService.getImsById(id).subscribe(
       data => {
@@ -72,34 +82,35 @@ export class ImsstatusComponent implements OnInit {
     };
   }
 
-  downloadcsvfile() {
-    var options = {
+   downloadcsvfile() {
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
       showTitle: true,
       useBom: true,
-      noDownload: true,
-      headers: ['id', 'titre', 'main_changes', 'process']
+      headers: ['id', 'titre', 'main_changes', 'process' , 'statut_etude_empact', 'TauxdeRetard','ims_id']
     };
 
     new ngxCsv(this.excelData, 'impact study', options);
   }
 
-  addInstructions() {
-    const newInstruction = new Instruction(
-      this.ims.id.toString(), 
-      'New Title',
-      'Main Changes',
-      'Process',
-      1,
-      1,
-      1,
-      this.ims.id
-    );
 
-    this.instructionService.createInstruction(newInstruction).subscribe(
+  addInstructions(row: any, index: number) {
+    const imsId = this.activatedRoute.snapshot.params['id'];
+    const newInstruction = new Instruction(
+      row.id,
+      row.titre,
+      row.main_changes,
+      row.process,
+      row.statut_etude_empact,
+      row.TauxdeRetard,
+      row.responsable,
+      imsId
+    );
+  
+    this.instructionService.createInstruction(newInstruction, imsId).subscribe(
       data => {
         console.log('Instruction added successfully');
         this.snackBar.open('Instruction added successfully', 'Close', {
@@ -112,9 +123,7 @@ export class ImsstatusComponent implements OnInit {
       }
     );
   }
-
-
-  fetchInstructions() {
+    fetchInstructions() {
     this.instructionService.getInstructionsByImsId(this.ims.id).subscribe(
       data => {
         this.instructions = data;
@@ -124,4 +133,27 @@ export class ImsstatusComponent implements OnInit {
       }
     );
   }
+  sendEmail(responsableName: string): void {
+    const responsable = this.ResponsableEI.find(user => user.name === responsableName);
+    const email = responsable ? responsable.email : null;
+  
+    if (email) {
+      const emailData = {
+        to: email
+      };
+  
+      this.emailService.sendEmail(emailData).subscribe(
+        response => {
+          console.log('Email envoyé avec succès', response);
+        },
+        error => {
+          console.error('Erreur lors de l\'envoi de l\'email', error);
+        }
+      );
+    } else {
+      console.error('Destinataire non trouvé');
+    }
+  }
+  
+
 }
